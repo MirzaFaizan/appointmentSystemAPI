@@ -7,8 +7,6 @@ var Controller= require('../Controller/Main');
 
 
 router.post('/signup', Controller.adduser);
-
-
 router.post('/signin',Controller.userlogin);
 
 router.post('/addslot',tokenVerify,Controller.addslot);
