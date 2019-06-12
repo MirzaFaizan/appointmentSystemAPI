@@ -14,7 +14,7 @@ router.post('/signin',Controller.userlogin);
 router.post('/addslot',tokenVerify,Controller.addslot);
 router.delete('/removeslot',tokenVerify,Controller.removeslot);
 router.get('/allslots',tokenVerify, Controller.allslots);
-
+router.post('/addgroup',tokenVerify,Controller.addgroup)
 /*
 
 router.get('/dashboard',Controller.tokenverification, function(req, res, next) {

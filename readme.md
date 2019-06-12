@@ -81,3 +81,14 @@ headers
 res:{
    slots: slots
 }
+POST /addgroup group can be add
+
+req:{
+    name:xxx
+    password:xxx
+    token:xxx
+}
+
+res:{
+    message:group added sucessfully
+}

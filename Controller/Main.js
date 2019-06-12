@@ -153,7 +153,7 @@ exports.userlogin= function(req,res){
 exports.addgroup= function(req,res){
 
   var groupmodel = new group_instance({
-    group_name: req.body.groupname,
+    name: req.body.name,
     password: req.body.password
   });
   console.log(req.body);

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var GroupSchema = new Schema(
   {
-    group_name: {type: String, max: 100},
+    name: {type: String, max: 100},
     password: {type: String, max: 100}
   }
 );
