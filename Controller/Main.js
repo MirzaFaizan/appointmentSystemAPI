@@ -132,13 +132,13 @@ exports.userlogin= function(req,res){
 
   })
   console.log(groupmodel)
-  user_instance.count({name:req.body.name,password:req.body.password}, function (err,count,user){
+  user_instance.findOne({name:req.body.name,password:req.body.password}, function (err,user){
 
     if(!err){
-    group_instance.count({group_name:req.body.group_name,group_password:req.body.group_password},function(err,count){
-
-    console.log("enter count")
-    if(count>0){
+    group_instance.findOne({group_name:req.body.group_name,group_password:req.body.group_password},function(err,group){
+    console.log("user",user)
+    console.log("group",group)
+    if(!err){
           const payload = {
             user:user
           };
@@ -148,7 +148,10 @@ exports.userlogin= function(req,res){
             return res.json({
                 success: true,
                 message: 'Token Generated and Login Complete!',
-                token: token
+                token: token,
+                user:user,
+                group:group
+
               });
     }
     else {
