@@ -123,9 +123,20 @@ exports.userlogin= function(req,res){
   var usermodel = new user_instance({
     name: req.body.name,
     password: req.body.password
+    
   });
   console.log(usermodel)
+  var groupmodel=new group_instance({
+    group_name:req.body.groupname,
+    group_password:req.body.password
+
+  })
+  console.log(groupmodel)
   user_instance.count({name:req.body.name,password:req.body.password}, function (err,count,user){
+
+    if(!err){
+    group_instance.count({group_name:req.body.group_name,group_password:req.body.group_password},function(err,count){
+
     console.log("enter count")
     if(count>0){
           const payload = {
@@ -143,9 +154,19 @@ exports.userlogin= function(req,res){
     else {
       return res.status(200).json(message='Invalid Groupname or Username');
   }
-  usernameasync = req.body.username;
-  console.log(usernameasync);
-  });
+
+    
+  })
+
+
+}
+  
+ 
+  
+});
+
+
+
 }
 
 
@@ -153,11 +174,12 @@ exports.userlogin= function(req,res){
 exports.addgroup= function(req,res){
 
   var groupmodel = new group_instance({
-    name: req.body.name,
-    password: req.body.password
+    group_name: req.body.group_name,
+    group_password: req.body.group_password
+
   });
   console.log(req.body);
-  group_instance.count({group_name:req.body.groupname}, function (err, count){
+  group_instance.count({group_name:req.body.group_name}, function (err, count){
   if(count==0){
     groupmodel.save(function (err) {
         if (err)
@@ -171,7 +193,7 @@ exports.addgroup= function(req,res){
     });
   }
   else {
-      return res.status(200).json(message='Account Already exists with this email address');
+      return res.status(200).json(message='Account Already exists with this name');
   }
   });
 }
